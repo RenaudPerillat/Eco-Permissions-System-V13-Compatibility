@@ -101,11 +101,11 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: >
-        dotnet test ${{ env.SOLUTION }}
-          --configuration ${{ matrix.configuration }}
-          --no-build
-          --logger "trx"
+      run: |
+        dotnet test ${{ env.SOLUTION }} \
+          --configuration ${{ matrix.configuration }} \
+          --no-build \
+          --logger "trx" \
           --results-directory ${{ env.TEST_RESULTS_DIR }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
@@ -118,14 +118,17 @@ jobs:
     # Build the dll file
     - name: Build the application
       # run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
-      run: dotnet build ${{ env.SOLUTION }} --configuration ${{ matrix.configuration }} --no-restore
+      run: |
+        dotnet build ${{ env.SOLUTION }} \
+           --configuration ${{ matrix.configuration }} \
+           --no-restore
       # env:
       #   Configuration: ${{ matrix.configuration }}
 
     - name: Publish
-      run: >
-        dotnet publish
-        -c ${{ matrix.configuration }}
+      run: |
+        dotnet publish \
+        -c ${{ matrix.configuration }} \
         -o ${{ env.PUBLISH_DIR }}
 
     - uses: actions/upload-artifact@v7
