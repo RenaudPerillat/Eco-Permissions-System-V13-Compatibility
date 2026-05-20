@@ -121,6 +121,7 @@ namespace Eco.Systems.Permissions.Permissions
         /// </summary>
         private void CreateAdapters()
         {
+            Log.WriteLineLoc($"HELP");
             Log.WriteLineLoc($"CreateAdapters");
             _commands?.ForEach(c =>
             {
