@@ -24,7 +24,6 @@ namespace Eco.Systems.Permissions.Permissions
         [CommandProcessor]
         public static bool ESPProcessCommand(ChatCommand command, IChatClient chatClient)
         {
-            System.String error_message = "";
             var level = chatClient.GetChatAuthLevel();
 
             // Check and see if the command is a valid command
@@ -32,14 +31,9 @@ namespace Eco.Systems.Permissions.Permissions
 
             if (adapter == null)
             {
-                error_message = string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name);
-                try {
-                    chatClient.ErrorLocStr(error_message);
-                }
-                catch (Exception ex)
-                {
-                    Log.WriteErrorLineLocStr($"Error while calling chatClient.ErrorLocStr: {ex} - {error_message}");
-                }
+                
+                Log.WriteErrorLineLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
+                // chatClient.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
                 return false;
             }
 
@@ -62,14 +56,9 @@ namespace Eco.Systems.Permissions.Permissions
             }
 
             // default behaviour is to deny if the state is unexpected
-            error_message = string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name);
-            try {
-                chatClient.ErrorLocStr(error_message);
-            }
-            catch (Exception ex)
-            {
-                Log.WriteErrorLineLocStr($"Error while calling chatClient.ErrorLocStr: {ex} - {error_message}");
-            }
+            Log.WriteErrorLineLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
+            // chatClient.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
+
             return false;
         }
     }
