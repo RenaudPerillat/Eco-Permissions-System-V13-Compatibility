@@ -3,7 +3,6 @@ using Eco.Gameplay.Systems.Chat;
 using Eco.Gameplay.Systems.Messaging.Chat.Commands;
 using Eco.Shared.Localization;
 using Eco.Systems.Permissions.Groups;
-using Eco.Shared.Logging;
 
 namespace Eco.Systems.Permissions.Permissions
 {
@@ -31,7 +30,7 @@ namespace Eco.Systems.Permissions.Permissions
 
             if (adapter == null)
             {
-                /*chatClient.ErrorLocStr*/Log.WriteErrorLineLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
+                chatClient?.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
                 return false;
             }
 
@@ -54,7 +53,7 @@ namespace Eco.Systems.Permissions.Permissions
             }
 
             // default behaviour is to deny if the state is unexpected
-            /*chatClient.ErrorLocStr*/Log.WriteErrorLineLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
+            chatClient?.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
 
             return false;
         }
