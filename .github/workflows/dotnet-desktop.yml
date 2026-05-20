@@ -61,6 +61,7 @@ env:
   DOTNET_VERSION: 8.0.x
   TEST_RESULTS_DIR: TestResults
   PUBLISH_DIR: publish
+  SOLUTION: Eco.Systems.Permissions.Sln
   Solution_Name: Eco.Systems.Permissions.Sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
   Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
   Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
@@ -113,7 +114,7 @@ jobs:
     # Build the dll file
     - name: Build the application
       # run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
-      run: dotnet build ${{ env:Solution_Name }} --configuration ${{ matrix.configuration }} --no-restore
+      run: dotnet build ${{ env:SOLUTION }} --configuration ${{ matrix.configuration }} --no-restore
       # env:
       #   Configuration: ${{ matrix.configuration }}
 
