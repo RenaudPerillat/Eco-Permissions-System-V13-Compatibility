@@ -133,12 +133,6 @@ namespace Eco.Systems.Permissions.Permissions
         private IEnumerable<ChatCommand> LoadCommandsInternal()
         {
             IEnumerable<ChatCommand> commands = ChatManager.Obj.GetAllCommands();
-            Log.WriteLineLoc($"All commands:");
-            commands?.ForEach(c =>
-            {
-                Log.WriteLineLoc($"  - {c.Name} - {c.ShortCut}");
-            });
-            Log.WriteLineLoc($"All commands - done");
             return commands;
         }
 
