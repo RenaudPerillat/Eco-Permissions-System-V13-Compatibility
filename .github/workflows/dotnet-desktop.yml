@@ -102,12 +102,22 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
+    - name: "Looking for DLL"
+      run: |
+        dir
+        dir ./Eco.Systems.Permissions/
+        dir ./Eco.Systems.Permissions/obj/
+        dir ./Eco.Systems.Permissions/obj/${env:Configuration}/
+        dir ./Eco.Systems.Permissions/obj/${env:Configuration}/net8.0/
+      env:
+        Configuration: ${{ matrix.configuration }}
+
     # Store .dll as artifact
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v4
       with:
         name: ${env:Configuration}-Eco.Systems.Permissions.dll
-        path: Eco.Systems.Permissions\obj\${env:Configuration}\net8.0\Eco.Systems.Permissions.dll
+        path: ./Eco.Systems.Permissions/obj/${env:Configuration}/net8.0/Eco.Systems.Permissions.dll
         retention-days: 5
       env:
         Configuration: ${{ matrix.configuration }}
