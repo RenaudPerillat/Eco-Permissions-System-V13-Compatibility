@@ -40,12 +40,12 @@ name: .NET Core Desktop
 
 on:
   push:
-    branches:
-      - '*'
-      - main
-      - develop
-    tags:
-      - '*.*.*'
+    # branches:
+    #   - '*'
+    #   - main
+    #   - develop
+    # tags:
+    #   - '*.*.*'
 
   pull_request:
     types:
