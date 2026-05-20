@@ -121,12 +121,11 @@ namespace Eco.Systems.Permissions.Permissions
         /// </summary>
         private void CreateAdapters()
         {
-            Log.WriteLineLoc($"HELP");
-            Log.WriteLineLoc($"CreateAdapters");
             _commands?.ForEach(c =>
             {
-                if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower())) {
-                    Log.WriteLineLoc($"Adapter create: {c.Name} {c}");
+                Log.WriteLineLoc($"Adapter: {c.Name}");
+                if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower()) && c.Name.ToLower() != "dummy") {
+                    Log.WriteLineLoc($"Adapter create: {c}");
                     Commands?.Add(new ChatCommandAdapter(c));
                 }
             });
