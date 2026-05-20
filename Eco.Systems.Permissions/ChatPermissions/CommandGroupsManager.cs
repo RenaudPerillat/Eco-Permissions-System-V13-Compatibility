@@ -124,7 +124,8 @@ namespace Eco.Systems.Permissions.Permissions
             _commands?.ForEach(c =>
             {
                 Log.WriteLineLoc($"Adapter: {c.Name}");
-                if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower()) && c.Name.ToLower() != "dummy") {
+                if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower()) && (
+                    c.Name.ToLower() != "dummy" || c.Name.ToLower() != "test")) {
                     Log.WriteLineLoc($"Adapter create: {c}");
                     Commands?.Add(new ChatCommandAdapter(c));
                 }
@@ -135,7 +136,7 @@ namespace Eco.Systems.Permissions.Permissions
         private IEnumerable<ChatCommand> LoadCommandsInternal()
         {
             IEnumerable<ChatCommand> commands = ChatManager.Obj.GetAllCommands();
-
+            Log.WriteLineLoc($"All commands: {commands}");
             return commands;
         }
 
