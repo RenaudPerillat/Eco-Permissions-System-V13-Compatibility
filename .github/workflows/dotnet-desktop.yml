@@ -96,6 +96,12 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
+    # Build the dll file
+    - name: Build the application
+      run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
     - name: Discovering where is stored the build output
       run: |
         dir
