@@ -121,6 +121,7 @@ namespace Eco.Systems.Permissions.Permissions
         /// </summary>
         private void CreateAdapters()
         {
+            Log.WriteLineLoc($"CreateAdapters");
             _commands?.ForEach(c =>
             {
                 if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower())) {
