@@ -40,9 +40,18 @@ name: .NET Core Desktop
 
 on:
   push:
-    branches: [ "main", "fix*", "feat*"]
+    branches:
+      - *
+      - main
+      - develop
+    tags:
+      - '*.*.*'
+
   pull_request:
-    branches: [ "main", "fix*", "feat*" ]
+    types:
+      - opened
+      - synchronize
+      - reopened
 
 jobs:
 
