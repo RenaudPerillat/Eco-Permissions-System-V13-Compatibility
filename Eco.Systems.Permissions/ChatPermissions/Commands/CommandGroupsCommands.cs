@@ -9,7 +9,6 @@ using Eco.Shared.Utils;
 using System;
 using Eco.Core.Plugins;
 using Eco.Gameplay.Systems;
-using Eco.Shared.Logging;
 
 namespace Eco.Systems.Permissions.Permissions
 {
@@ -31,13 +30,13 @@ namespace Eco.Systems.Permissions.Permissions
             {
                 if (adapter == null)
                 {
-                    /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"),command));
+                    client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"),command));
                     return;
                 }
 
                 if (!group.AddPermission(adapter))
                 {
-                    /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1} permissions, its identifier already exists"), adapter.Identifier, group.GroupName));
+                    client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1} permissions, its identifier already exists"), adapter.Identifier, group.GroupName));
                     return;
                 }
 
@@ -47,7 +46,7 @@ namespace Eco.Systems.Permissions.Permissions
             }
             catch
             {
-                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1}, please create the group first"), adapter.Identifier, groupName));
+                client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1}, please create the group first"), adapter.Identifier, groupName));
             }
         }
 
@@ -74,7 +73,7 @@ namespace Eco.Systems.Permissions.Permissions
 
             if (!adapters.AnyNotNull())
             {
-                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"), command));
+                client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"), command));
                 return;
             }
             foreach (var adapter in adapters)
@@ -83,7 +82,7 @@ namespace Eco.Systems.Permissions.Permissions
                 {
                     if (!group.AddPermission(adapter))
                     {
-                        /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1} permissions, its identifier already exists"), adapter.Identifier, group.GroupName));
+                        client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1} permissions, its identifier already exists"), adapter.Identifier, group.GroupName));
                         continue;
                     }
 
@@ -107,7 +106,7 @@ namespace Eco.Systems.Permissions.Permissions
 
             if (adapter == null)
             {
-                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"), command));
+                client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"), command));
                 return;
             }
 
@@ -156,7 +155,7 @@ namespace Eco.Systems.Permissions.Permissions
             {
                 if (adapter == null)
                 {
-                    /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"), command));
+                    client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be found in the commands set"), command));
                     return;
                 }
 
@@ -171,7 +170,7 @@ namespace Eco.Systems.Permissions.Permissions
             }
             catch
             {
-                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1}, please create the group first"), adapter.Identifier, groupName));
+                client.ErrorLocStr(Plugin.appName + string.Format(Localizer.DoStr("Command {0} was unable to be added to Group {1}, please create the group first"), adapter.Identifier, groupName));
             }
         }
 
