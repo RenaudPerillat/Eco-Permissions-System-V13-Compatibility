@@ -39,11 +39,10 @@
 name: .NET Core Desktop
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "fix*", "feat*"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "fix*", "feat*" ]
 
 jobs:
 
