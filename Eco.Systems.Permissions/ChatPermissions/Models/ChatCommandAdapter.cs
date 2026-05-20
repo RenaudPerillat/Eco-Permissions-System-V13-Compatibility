@@ -3,6 +3,7 @@ using Eco.Gameplay.Systems.Chat;
 using Eco.Gameplay.Systems.Messaging.Chat.Commands;
 using Newtonsoft.Json;
 using System.Linq;
+using Eco.Shared.Logging;
 
 namespace Eco.Systems.Permissions.Permissions
 {
@@ -20,6 +21,7 @@ namespace Eco.Systems.Permissions.Permissions
 
         public ChatCommandAdapter(ChatCommand c)
         {
+            Log.WriteLineLoc($"ChatCommandAdapter.ctor: {c.Name} - {c.ShortCut}");
             Identifier = c.Name.ToLower();
             ShortCut = c.ShortCut.ToLower();
 

@@ -123,10 +123,8 @@ namespace Eco.Systems.Permissions.Permissions
         {
             _commands?.ForEach(c =>
             {
-                Log.WriteLineLoc($"Adapter: {c.Name} - {c.ShortCut}");
                 if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower())) {
-                    //Commands?.Add(new ChatCommandAdapter(c));
-                    Log.WriteLineLoc($"Adapter: {c.Name} - {c.ShortCut}");
+                    Commands?.Add(new ChatCommandAdapter(c));
                 }
             });
         }
