@@ -24,7 +24,7 @@ namespace Eco.Systems.Permissions.Permissions
         [CommandProcessor]
         public static bool ESPProcessCommand(ChatCommand command, IChatClient chatClient)
         {
-            var error_message;
+            System.String error_message = "";
             var level = chatClient.GetChatAuthLevel();
 
             // Check and see if the command is a valid command
