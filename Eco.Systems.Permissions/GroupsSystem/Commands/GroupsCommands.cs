@@ -6,6 +6,7 @@ using System.Text;
 using Eco.Shared.Localization;
 using Eco.Gameplay.Systems.Messaging.Chat.Commands;
 using Eco.Systems.Permissions.Utils;
+using Eco.Shared.Logging;
 
 namespace Eco.Systems.Permissions.Groups
 {
@@ -30,14 +31,14 @@ namespace Eco.Systems.Permissions.Groups
             var maingroups = StringUtils.Sanitize(groupName);
             if (maingroups == "admin" || maingroups == "default")
             {
-                user.ErrorLocStr($"Group {groupName} is a default group and cannot be deleted");
+                /*user.ErrorLocStr*/Log.WriteErrorLineLocStr($"Group {groupName} is a default group and cannot be deleted");
                 return;
             }
 
             if (GroupsManager.Data.DeleteGroup(groupName))
-                user.ErrorLocStr($"Group {groupName} was deleted");
+                /*user.ErrorLocStr*/Log.WriteErrorLineLocStr($"Group {groupName} was deleted");
             else
-                user.ErrorLocStr($"Group {groupName} was unable to be found.");
+                /*user.ErrorLocStr*/Log.WriteErrorLineLocStr($"Group {groupName} was unable to be found.");
 
             GroupsManager.API.SaveData();
         }
@@ -61,7 +62,7 @@ namespace Eco.Systems.Permissions.Groups
             var user = UserManager.FindUser(client.Name);
             if (user is null)
             {
-                client.ErrorLocStr($"Groups: {sb}");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"Groups: {sb}");
             }
             else
                 user.TempServerMessage(Localizer.DoStr(sb.ToString()));
@@ -89,7 +90,7 @@ namespace Eco.Systems.Permissions.Groups
             var user = UserManager.FindUser(client.Name);
             if(user is null)
             {
-                client.ErrorLocStr($"Permissions for Group: {group.GroupName}: {sb}");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"Permissions for Group: {group.GroupName}: {sb}");
             }
             else
                 user.TempServerMessage(Localizer.DoStr(string.Format("\nGroup {0}:\nPermissions: {1}", group.GroupName, sb.ToString())));
@@ -101,7 +102,7 @@ namespace Eco.Systems.Permissions.Groups
             User  user = UserManager.FindUser(identifier);
             if (user == null)
             {
-                client.ErrorLocStr($"User {identifier} was not found.");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"User {identifier} was not found.");
                 return;
             }
             Group group = GroupsManager.Data.GetOrAddGroup(groupName, true);
@@ -109,7 +110,7 @@ namespace Eco.Systems.Permissions.Groups
             if (group.AddUser(user))
                 client.MsgLocStr($"User {user.Name} was added to Group {group.GroupName}");
             else
-                client.ErrorLocStr($"User {user.Name} Already Exists in Group: {group.GroupName}");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"User {user.Name} Already Exists in Group: {group.GroupName}");
 
             GroupsManager.API.SaveData();
         }
@@ -120,19 +121,19 @@ namespace Eco.Systems.Permissions.Groups
             User  user = UserManager.FindUser(identifier);
             if (user == null)
             {
-                client.ErrorLocStr($"User {identifier} was not found.");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"User {identifier} was not found.");
                 return;
             }
             Group group = GroupsManager.Data.GetOrAddGroup(groupName, false);
             if (group == null)
             {
-                client.ErrorLocStr($"Group {groupName} was unable to be found.");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"Group {groupName} was unable to be found.");
             }
 
             if (group.RemoveUser(user))
                 client.MsgLocStr($"User {user.Name} was removed from Group {group.GroupName}");
             else
-                client.ErrorLocStr($"User {user.Name} was unable to be found in Group: {group.GroupName}");
+                /*client.ErrorLocStr*/Log.WriteErrorLineLocStr($"User {user.Name} was unable to be found in Group: {group.GroupName}");
 
             GroupsManager.API.SaveData();
         }

@@ -3,7 +3,6 @@ using Eco.Gameplay.Systems.Chat;
 using Eco.Gameplay.Systems.Messaging.Chat.Commands;
 using Newtonsoft.Json;
 using System.Linq;
-using Eco.Shared.Logging;
 
 namespace Eco.Systems.Permissions.Permissions
 {
