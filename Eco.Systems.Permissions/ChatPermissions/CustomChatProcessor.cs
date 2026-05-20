@@ -24,6 +24,7 @@ namespace Eco.Systems.Permissions.Permissions
         [CommandProcessor]
         public static bool ESPProcessCommand(ChatCommand command, IChatClient chatClient)
         {
+            var error_message;
             var level = chatClient.GetChatAuthLevel();
 
             // Check and see if the command is a valid command
@@ -31,7 +32,7 @@ namespace Eco.Systems.Permissions.Permissions
 
             if (adapter == null)
             {
-                var error_message = string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name);
+                error_message = string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name);
                 try {
                     chatClient.ErrorLocStr(error_message);
                 }
@@ -61,7 +62,7 @@ namespace Eco.Systems.Permissions.Permissions
             }
 
             // default behaviour is to deny if the state is unexpected
-            var error_message = string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name);
+            error_message = string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name);
             try {
                 chatClient.ErrorLocStr(error_message);
             }
