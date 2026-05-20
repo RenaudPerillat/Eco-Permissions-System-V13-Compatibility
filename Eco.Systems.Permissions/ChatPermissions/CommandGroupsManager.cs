@@ -125,7 +125,7 @@ namespace Eco.Systems.Permissions.Permissions
             {
                 Log.WriteLineLoc($"Adapter: {c.Name} - {c.ShortCut}");
                 if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower())) {
-                    #Commands?.Add(new ChatCommandAdapter(c));
+                    //Commands?.Add(new ChatCommandAdapter(c));
                     Log.WriteLineLoc($"Adapter: {c.Name} - {c.ShortCut}");
                 }
             });
