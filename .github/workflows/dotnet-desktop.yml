@@ -109,7 +109,7 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: ^
+      run: |
         dotnet test ^
           --configuration ${{ matrix.configuration }} ^
           --no-build ^
@@ -120,7 +120,7 @@ jobs:
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       # run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      run: ^
+      run: |
         dotnet restore ^
           --property:EcoVersion=${{ matrix.eco_version }}
       # env:
@@ -129,7 +129,7 @@ jobs:
     # Build the dll file
     - name: Build the application
       # run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
-      run: ^
+      run: |
         dotnet build ^
           --configuration ${{ matrix.configuration }} ^
           --no-restore ^
