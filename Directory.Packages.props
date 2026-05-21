@@ -1,7 +1,35 @@
 <Project>
 
-  <Import Project="build/packages/Directory.Packages.Commons.props" />
+  <PropertyGroup>
 
-  <Import Project="build/packages/Eco.ReferenceAssemblies/Directory.Packages.Eco.ReferenceAssemblies.$(EcoVersion).props" />
+    <EcoPackagesFile>
+      build/packages/Eco.ReferenceAssemblies/Directory.Packages.Eco.ReferenceAssemblies.$(EcoVersion).props
+    </EcoPackagesFile>
+
+    <CommonPackagesFile>
+      build/packages/Directory.Packages.Commons.props
+    </CommonPackagesFile>
+
+  </PropertyGroup>
+
+  <Import
+    Project="$(EcoPackagesFile)"
+    Condition="Exists('$(EcoPackagesFile)')" />
+
+  <Target Name="ValidateEcoPackages" BeforeTargets="Restore">
+    <Error
+      Condition="!Exists('$(EcoPackagesFile)')"
+      Text="Missing package profile: $(EcoPackagesFile)" />
+  </Target>
+
+  <Import
+    Project="$(CommonPackagesFile)"
+    Condition="Exists('$(CommonPackagesFile)')" />
+
+  <Target Name="ValidateCommonPackages" BeforeTargets="Restore">
+    <Error
+      Condition="!Exists('$(CommonPackagesFile)')"
+      Text="Missing package profile: $(CommonPackagesFile)" />
+  </Target>
 
 </Project>
