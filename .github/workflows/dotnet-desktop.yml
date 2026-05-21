@@ -103,19 +103,6 @@ jobs:
         dotnet-version: ${{ env.DOTNET_VERSION }}
         cache: true
 
-    - name: Debug filesystem
-      shell: pwsh
-      run: |
-        Get-ChildItem -Path . -Recurse
-    - name: Debug package files
-      shell: pwsh
-      run: |
-        Get-ChildItem build/packages
-    - name: Debug EcoVersion
-      shell: pwsh
-      run: |
-        echo "EcoVersion=${{ matrix.eco_version }}"
-
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     # - name: Setup MSBuild.exe
     #   uses: microsoft/setup-msbuild@v3
@@ -127,9 +114,9 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    # Execute all unit tests in the solution
-    - name: Execute unit tests in pwsh
-      run: dotnet test ${{ env.PROJECT_FILE }} --configuration ${{ matrix.configuration }} --no-build --logger "trx" --results-directory ${{ env.TEST_RESULTS_DIR }} --property:EcoVersion=${{ matrix.eco_version }}
+    # # Execute all unit tests in the solution
+    # - name: Execute unit tests in pwsh
+    #   run: dotnet test ${{ env.PROJECT_FILE }} --configuration ${{ matrix.configuration }} --no-build --logger "trx" --results-directory ${{ env.TEST_RESULTS_DIR }} --property:EcoVersion=${{ matrix.eco_version }}
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
