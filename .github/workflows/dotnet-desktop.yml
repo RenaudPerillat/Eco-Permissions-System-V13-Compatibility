@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  WINDOWS_RUNNER_VERSION: 2025
+  WINDOWS_RUNNER: "windows-2025"
 
   PROJECT_FILE: Eco.Systems.Permissions/Eco.Systems.Permissions.csproj
 
@@ -63,8 +63,7 @@ jobs:
             dotnet: "10.0.x"
             framework: "net10.0"
 
-    runs-on: windows-2025
-    #${{ env.WINDOWS_RUNNER_VERSION }}
+    runs-on: ${{ env.WINDOWS_RUNNER }}
 
     steps:
 
@@ -178,8 +177,7 @@ jobs:
             dotnet: "10.0.x"
             framework: "net10.0"
 
-    runs-on: windows-2025
-    #${{ env.WINDOWS_RUNNER_VERSION }}
+    runs-on: ${{ env.WINDOWS_RUNNER }}
 
     steps:
 
