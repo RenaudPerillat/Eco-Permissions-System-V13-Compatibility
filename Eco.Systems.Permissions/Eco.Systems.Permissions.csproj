@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Eco.ReferenceAssemblies" />
-	  <PackageReference Include="ConcurrentHashSet" Version="1.3.0" />
-	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	  <PackageReference Include="StrangeLoopGames.PropertyChanged.Fody" Version="3.4.2-slg.3" />
+      <PackageReference Include="Eco.ReferenceAssemblies" />
+	  <PackageReference Include="ConcurrentHashSet" />
+	  <PackageReference Include="Newtonsoft.Json" />
+	  <PackageReference Include="StrangeLoopGames.PropertyChanged.Fody" />
   </ItemGroup>
 
   <ItemGroup>
