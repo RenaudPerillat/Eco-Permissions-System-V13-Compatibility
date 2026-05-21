@@ -31,9 +31,7 @@ namespace Eco.Systems.Permissions.Permissions
 
             if (adapter == null)
             {
-                
-                Log.WriteErrorLineLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
-                // chatClient.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
+                chatClient.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("Command {0} not found"), command.Name));
                 return false;
             }
 
@@ -56,8 +54,7 @@ namespace Eco.Systems.Permissions.Permissions
             }
 
             // default behaviour is to deny if the state is unexpected
-            Log.WriteErrorLineLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
-            // chatClient.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
+            chatClient.ErrorLocStr(string.Format(Plugin.appName + Localizer.DoStr("You are not authorized to use the command {0}"), command.Name));
 
             return false;
         }
