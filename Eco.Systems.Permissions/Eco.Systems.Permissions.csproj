@@ -19,4 +19,14 @@
     </Reference>
   </ItemGroup>
 
+  <Target Name="DebugVariables" BeforeTargets="Restore">
+    <Message Text="EcoVersion=$(EcoVersion)" Importance="high" />
+  </Target>
+
+  <!-- <Target Name="ValidateEcoPackages" BeforeTargets="Restore">
+    <Error
+      Condition="!Exists('$(EcoPackagesFile)')"
+      Text="Missing package profile: $(EcoPackagesFile)" />
+  </Target> -->
+
 </Project>
