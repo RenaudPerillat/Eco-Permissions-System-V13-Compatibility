@@ -7,4 +7,6 @@
     <PackageProjectUrl>github.com/TheKye</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
+  <Import Project="build/frameworks/$(EcoVersion).props" />
 </Project>
