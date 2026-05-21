@@ -3,6 +3,7 @@ using Eco.Gameplay.Systems.Chat;
 using Eco.Gameplay.Systems.Messaging.Chat.Commands;
 using Eco.Shared.Localization;
 using Eco.Systems.Permissions.Groups;
+using Eco.Shared.Logging;
 
 namespace Eco.Systems.Permissions.Permissions
 {

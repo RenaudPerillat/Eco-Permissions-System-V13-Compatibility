@@ -123,8 +123,9 @@ namespace Eco.Systems.Permissions.Permissions
         {
             _commands?.ForEach(c =>
             {
-                if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower()))
+                if (!Commands.Any(adpt => adpt.Identifier == c.Name.ToLower())) {
                     Commands?.Add(new ChatCommandAdapter(c));
+                }
             });
         }
 
@@ -132,7 +133,6 @@ namespace Eco.Systems.Permissions.Permissions
         private IEnumerable<ChatCommand> LoadCommandsInternal()
         {
             IEnumerable<ChatCommand> commands = ChatManager.Obj.GetAllCommands();
-
             return commands;
         }
 
