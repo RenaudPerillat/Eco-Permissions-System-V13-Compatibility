@@ -62,6 +62,9 @@ env:
   TEST_RESULTS_DIR: TestResults
   PUBLISH_DIR: publish
   SOLUTION: Eco.Systems.Permissions.Sln
+  PACKAGE_VERSION: 1.0.0
+  ASSEMBLY_VERSION: 1.0.0
+  FILE_VERSION: 1.0.0
   # Replace with your solution name, i.e. MyWpfApp.sln.
   Solution_Name: Eco.Systems.Permissions.Sln
   # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
@@ -77,7 +80,12 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration:
+          - Debug
+          - Release
+        eco_version:
+          # - Eco-0.11
+          - Eco-0.13
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -101,19 +109,35 @@ jobs:
 
     # Execute all unit tests in the solution
     - name: Execute unit tests
-      run: dotnet test ${{ env.SOLUTION }} --configuration ${{ matrix.configuration }} --no-build --logger "trx" --results-directory ${{ env.TEST_RESULTS_DIR }}
+      run: ^
+        dotnet test ^
+          --configuration ${{ matrix.configuration }} ^
+          --no-build ^
+          --logger "trx" ^
+          --results-directory ${{ env.TEST_RESULTS_DIR }} ^
+          --property:EcoVersion=${{ matrix.eco_version }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       # run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      run: dotnet restore ${{ env.SOLUTION }}
+      run: ^
+        dotnet restore ^
+          --property:EcoVersion=${{ matrix.eco_version }}
       # env:
       #   Configuration: ${{ matrix.configuration }}
 
     # Build the dll file
     - name: Build the application
       # run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
-      run: dotnet build ${{ env.SOLUTION }} --configuration ${{ matrix.configuration }} --no-restore
+      run: ^
+        dotnet build ^
+          --configuration ${{ matrix.configuration }} ^
+          --no-restore ^
+          --property:Version=${{ env.PACKAGE_VERSION }} ^
+          --property:AssemblyVersion=${{ env.ASSEMBLY_VERSION }} ^
+          --property:FileVersion=${{ env.FILE_VERSION }} ^
+          --property:InformationalVersion="${GITHUB_SHA::7}" ^
+          --property:EcoVersion=${{ matrix.eco_version }}
       # env:
       #   Configuration: ${{ matrix.configuration }}
 

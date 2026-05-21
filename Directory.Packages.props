@@ -1,0 +1,5 @@
+<Project>
+
+  <Import Project="build/packages/Directory.Packages.$(EcoVersion).props" />
+
+</Project>

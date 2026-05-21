@@ -1,0 +1,10 @@
+<Project>
+  <PropertyGroup>
+    <Copyright>Elixr Team</Copyright>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Title>ESP, Eco Systems Permissions</Title>
+    <Description>Eco Systems Permissions. A Stripped down version of the Elixr Mods Permissions System</Description>
+    <PackageProjectUrl>github.com/TheKye</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+</Project>
