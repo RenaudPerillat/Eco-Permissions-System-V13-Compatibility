@@ -22,6 +22,7 @@ namespace Eco.Systems.Permissions.Permissions
         {
             Identifier = c.Name.ToLower();
             ShortCut = c.ShortCut?.ToLower();
+
         }
 
         public bool Permit(SimpleGroupUser user)
