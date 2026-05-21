@@ -10,13 +10,7 @@
       <PackageReference Include="Eco.ReferenceAssemblies" />
 	  <PackageReference Include="ConcurrentHashSet" />
 	  <PackageReference Include="Newtonsoft.Json" />
-	  <PackageReference Include="StrangeLoopGames.PropertyChanged.Fody" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ConcurrentCollections">
-      <HintPath>..\ConcurrentCollections.dll</HintPath>
-    </Reference>
+	  <PackageReference Include="StrangeLoopGames.PropertyChanged.Fody"  PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
