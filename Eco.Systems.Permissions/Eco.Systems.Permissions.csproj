@@ -19,10 +19,4 @@
     </Reference>
   </ItemGroup>
 
-  <Target Name="ValidateEcoPackages" BeforeTargets="Restore">
-    <Error
-      Condition="!Exists('$(EcoPackagesFile)')"
-      Text="Missing package profile: $(EcoPackagesFile)" />
-  </Target>
-
 </Project>
