@@ -280,6 +280,11 @@ jobs:
       - name: Upload mod archive
         uses: actions/upload-artifact@v7
         with:
-          name: Eco.Systems.Permissions-${{ steps.version.outputs.version }}-eco${{ matrix.eco }}
+          name: Eco.Systems.Permissions-${{ steps.version.outputs.version }}-eco-${{ matrix.eco }}
           path: ${{ steps.archive.outputs.zip_name }}
           retention-days: ${{ env.ARTIFACTS_RETENTION_DAYS }}
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "Eco.Systems.Permissions-${{ steps.version.outputs.version }}*.zip"
