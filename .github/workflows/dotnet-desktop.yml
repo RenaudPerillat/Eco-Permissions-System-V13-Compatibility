@@ -58,10 +58,10 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  PROJECT_FILE: Eco.Systems.Permissions/Eco.Systems.Permissions.csproj
   DOTNET_VERSION: 8.0.x
   TEST_RESULTS_DIR: TestResults
   PUBLISH_DIR: publish
-  SOLUTION: Eco.Systems.Permissions.Sln
   PACKAGE_VERSION: 1.0.0
   ASSEMBLY_VERSION: 1.0.0
   FILE_VERSION: 1.0.0
@@ -110,7 +110,7 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: |
-        dotnet test `
+        dotnet test ${{ env.PROJECT_FILE }}`
           --configuration ${{ matrix.configuration }} `
           --no-build `
           --logger "trx" `
@@ -121,7 +121,7 @@ jobs:
     - name: Restore the application
       # run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
       run: |
-        dotnet restore `
+        dotnet restore ${{ env.PROJECT_FILE }}`
           --property:EcoVersion=${{ matrix.eco_version }}
       # env:
       #   Configuration: ${{ matrix.configuration }}
@@ -130,7 +130,7 @@ jobs:
     - name: Build the application
       # run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
       run: |
-        dotnet build `
+        dotnet build ${{ env.PROJECT_FILE }}`
           --configuration ${{ matrix.configuration }} `
           --no-restore `
           --property:Version=${{ env.PACKAGE_VERSION }} `
