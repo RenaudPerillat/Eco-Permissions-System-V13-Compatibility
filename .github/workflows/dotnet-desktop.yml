@@ -110,18 +110,18 @@ jobs:
     # Execute all unit tests in the solution
     - name: Execute unit tests
       run: |
-        dotnet test ^
-          --configuration ${{ matrix.configuration }} ^
-          --no-build ^
-          --logger "trx" ^
-          --results-directory ${{ env.TEST_RESULTS_DIR }} ^
+        dotnet test `
+          --configuration ${{ matrix.configuration }} `
+          --no-build `
+          --logger "trx" `
+          --results-directory ${{ env.TEST_RESULTS_DIR }} `
           --property:EcoVersion=${{ matrix.eco_version }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       # run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
       run: |
-        dotnet restore ^
+        dotnet restore `
           --property:EcoVersion=${{ matrix.eco_version }}
       # env:
       #   Configuration: ${{ matrix.configuration }}
@@ -130,13 +130,13 @@ jobs:
     - name: Build the application
       # run: msbuild $env:Solution_Name /t:Build /p:Configuration=$env:Configuration
       run: |
-        dotnet build ^
-          --configuration ${{ matrix.configuration }} ^
-          --no-restore ^
-          --property:Version=${{ env.PACKAGE_VERSION }} ^
-          --property:AssemblyVersion=${{ env.ASSEMBLY_VERSION }} ^
-          --property:FileVersion=${{ env.FILE_VERSION }} ^
-          --property:InformationalVersion="${GITHUB_SHA::7}" ^
+        dotnet build `
+          --configuration ${{ matrix.configuration }} `
+          --no-restore `
+          --property:Version=${{ env.PACKAGE_VERSION }} `
+          --property:AssemblyVersion=${{ env.ASSEMBLY_VERSION }} `
+          --property:FileVersion=${{ env.FILE_VERSION }} `
+          --property:InformationalVersion="${GITHUB_SHA::7}" `
           --property:EcoVersion=${{ matrix.eco_version }}
       # env:
       #   Configuration: ${{ matrix.configuration }}
